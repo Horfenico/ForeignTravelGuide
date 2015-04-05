@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CountryActivity">
+    <item
+        android:id="@+id/action_sortAZ"
+        android:orderInCategory="100"
+        android:title="@string/action_sortAZ"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_sortZA"
+        android:orderInCategory="100"
+        android:title="@string/action_sortZA"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_highAdvisry"
+        android:orderInCategory="100"
+        android:title="@string/action_highAdvisry"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_lowAdvisry"
+        android:orderInCategory="100"
+        android:title="@string/action_lowAdvisry"
+        app:showAsAction="never" />
+</menu>

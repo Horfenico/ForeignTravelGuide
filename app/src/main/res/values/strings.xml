@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Foreign Travel Guide</string>
+
+    <string name="title">Foreign Travel Guide</string>
+    <string name="countryButton">Countries</string>
+    <string name="searchButton">Search</string>
+    <string name="compareButton">Compare</string>
+    <string name="action_about">About</string>
+    <string name="action_help">Help</string>
+    <string name="action_sortAZ">Sort A-Z</string>
+    <string name="action_sortZA">Sort Z-A</string>
+    <string name="action_highAdvisry">Sort High-Low Advisory Level</string>
+    <string name="action_lowAdvisry">Sort Low-High Advisory Level</string>
+    <string name="searchText">Enter Desired Destination</string>
+    <string name="compareText1">Enter First Desired Location</string>
+    <string name="compareText2">Enter Second Desired Location</string>
+</resources>
