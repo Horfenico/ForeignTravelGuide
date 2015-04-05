@@ -13,11 +13,12 @@ import com.opencsv.CSVReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    List<String[]> list = new ArrayList<String[]>();
+    List<String[]> list = new ArrayList<>();
     String[] countryName = new String[231];
     String[] countryID = new String[231];
     String[] countryURLslug = new String[231];
@@ -104,7 +105,7 @@ public class MainActivity extends ActionBarActivity {
 
     //A function that reads in the "result.csv" file
     public List<String[]> readCSV(List<String[]> li) {
-        String next[] = {};
+        String next[];
         try {
             CSVReader reader = new CSVReader(new InputStreamReader(getAssets().open("result.csv")));
             for (; ; ) {
@@ -120,7 +121,8 @@ public class MainActivity extends ActionBarActivity {
         return li;
     }
 
-    public String[] getCountryName() {
-        return countryName;
+    public List<String> getCountryName() {
+        List<String> countryList = new ArrayList<>(Arrays.asList(countryName));
+        return countryList;
     }
 }

@@ -8,11 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 /**
  * Created by Eric on 4/2/2015.
  */
 public class CountryActivity extends MainActivity {
-    String[] nameList;
+    List<String> nameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +22,12 @@ public class CountryActivity extends MainActivity {
         setContentView(R.layout.activity_countries);
 
         nameList = getCountryName();
+
+        String[] countries = new String[nameList.size()];
+        countries = nameList.toArray(countries);
         ListView lv = (ListView) findViewById(R.id.list);
-        ArrayAdapter aa = new ArrayAdapter(this, R.layout.activity_listview, nameList);
+        ArrayAdapter aa = new ArrayAdapter(this, R.layout.activity_listview, countries);
         lv.setAdapter(aa);
-        registerForContextMenu(lv);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
