@@ -14,5 +14,4 @@
     <string name="searchText">Enter Desired Destination</string>
     <string name="compareText1">Enter First Desired Location</string>
     <string name="compareText2">Enter Second Desired Location</string>
-    <string name="selectCountry">Select A Location:</string>
 </resources>

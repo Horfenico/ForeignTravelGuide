@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
@@ -125,8 +124,8 @@ public class MainActivity extends ActionBarActivity {
     public List<String> getCountryName() {
         List<String> countryList = new ArrayList<>(Arrays.asList(countryName));
         List<String> newList = new ArrayList<>();
-        for(int i = 0; i < countryList.size()-2;i++)
-            newList.add(countryList.get(i+2));
+        for (int i = 0; i < countryList.size() - 2; i++)
+            newList.add(countryList.get(i + 2));
         return newList;
     }
 }
