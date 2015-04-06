@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -26,14 +27,16 @@ public class CountryActivity extends MainActivity {
         String[] countries = new String[nameList.size()];
         countries = nameList.toArray(countries);
         ListView lv = (ListView) findViewById(R.id.list);
-        ArrayAdapter aa = new ArrayAdapter(this, R.layout.activity_listview, countries);
-        lv.setAdapter(aa);
+        for(int i = 0; i < nameList.size();i++)
+            Toast.makeText(this,countries[i],Toast.LENGTH_SHORT).show();
+       // ArrayAdapter aa = new ArrayAdapter(this, R.layout.activity_listview, countries);
+        //lv.setAdapter(aa);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
+        //lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+          //  public void onItemClick(AdapterView parent, View view, int position, long id) {
 
-            }
-        });
+            //}
+        //});
 
 
     }
