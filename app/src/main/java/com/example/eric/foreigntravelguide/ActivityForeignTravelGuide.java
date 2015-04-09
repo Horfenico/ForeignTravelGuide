@@ -101,22 +101,19 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch(item.getItemId()){
+            case android.R.id.home: {
+                return true;
+            }
+            case R.id.action_help: {
+            }return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            return true;
-        } else if (id == R.id.action_help) {
-            return true;
+            case R.id.action_about:{
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        else if (id == R.id.home){
-            Intent intent = new Intent(this, ActivityForeignTravelGuide.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     //A function that reads in the "result.csv" file
