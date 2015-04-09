@@ -120,7 +120,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Climate").setIndicator("Climate"), (tabInfo = new TabInfo("Climate", FragmentTab3.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Security").setIndicator("Security"), (tabInfo = new TabInfo("Security", FragmentTab3.class, args)));
+        ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Security").setIndicator("Security"), (tabInfo = new TabInfo("Security", FragmentTab4.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         // Default to first tab
         this.onTabChanged("Info");
