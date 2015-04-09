@@ -1,19 +1,22 @@
 package com.example.eric.foreigntravelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
 /**
  * Created by Eric on 4/2/2015.
  */
-public class CountryActivity extends MainActivity {
+public class ActivityCountry extends ActivityForeignTravelGuide {
     List<String> nameList;
 
     @Override
@@ -21,14 +24,22 @@ public class CountryActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countries);
 
-        nameList = getCountryName();
+        //Set Action Bar
+        ActionBar bar = getSupportActionBar();
+        bar.setHomeButtonEnabled(true);
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("Destinations");
+
+        nameList = getCountryNames();
 
         ListView lv = (ListView) findViewById(R.id.list);
         ArrayAdapter aa = new ArrayAdapter(this, R.layout.activity_listview, nameList);
         lv.setAdapter(aa);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-
+                final Intent countryIntent = new Intent(getApplicationContext(), ActivityResult.class);
+                countryIntent.putExtra("pos", position);
+                startActivity(countryIntent);
             }
         });
 

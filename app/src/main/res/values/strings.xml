@@ -14,4 +14,9 @@
     <string name="searchText">Enter Desired Destination</string>
     <string name="compareText1">Enter First Desired Location</string>
     <string name="compareText2">Enter Second Desired Location</string>
+    <string name="mapfragText">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

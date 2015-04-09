@@ -1,7 +1,10 @@
 package com.example.eric.foreigntravelguide;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class ActivityForeignTravelGuide extends ActionBarActivity {
     List<String[]> list = new ArrayList<>();
     String[] countryName = new String[231];
     String[] countryID = new String[231];
@@ -29,6 +32,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Set Action Bar
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009ACD")));
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
 
         //Read in CSV data
         list = readCSV(list);
@@ -55,9 +65,9 @@ public class MainActivity extends ActionBarActivity {
         Button compareButton = (Button) findViewById(R.id.compareButton);
 
         //Set up Activity Intents
-        final Intent countryIntent = new Intent(this, CountryActivity.class);
-        final Intent searchIntent = new Intent(this, SearchActivity.class);
-        final Intent compareIntent = new Intent(this, CompareActivity.class);
+        final Intent countryIntent = new Intent(this, ActivityCountry.class);
+        final Intent searchIntent = new Intent(this, ActivitySearch.class);
+        final Intent compareIntent = new Intent(this, ActivityCompare.class);
 
         //Button on-click response events
         countryButton.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +109,12 @@ public class MainActivity extends ActionBarActivity {
         } else if (id == R.id.action_help) {
             return true;
         }
+        else if (id == R.id.home){
+            Intent intent = new Intent(this, ActivityForeignTravelGuide.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -121,7 +137,7 @@ public class MainActivity extends ActionBarActivity {
         return li;
     }
 
-    public List<String> getCountryName() {
+    public List<String> getCountryNames() {
         List<String> countryList = new ArrayList<>(Arrays.asList(countryName));
         List<String> newList = new ArrayList<>();
         for (int i = 0; i < countryList.size() - 2; i++)
