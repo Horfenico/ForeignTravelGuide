@@ -24,6 +24,5 @@ public class ActivityCompare extends ActivityForeignTravelGuide {
         title.setText("Compare");
 
 
-
     }
 }

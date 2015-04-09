@@ -21,11 +21,11 @@ import java.util.List;
 
 
 public class ActivityForeignTravelGuide extends ActionBarActivity {
-    List<String[]> list = new ArrayList<>();
-    String[] countryName = new String[231];
-    String[] countryID = new String[231];
-    String[] countryURLslug = new String[231];
-    int[] advisoryState = new int[231];
+    private List<String[]> list = new ArrayList<>();
+    private String[] countryName = new String[231];
+    private String[] countryID = new String[231];
+    private String[] countryURLslug = new String[231];
+    private int[] advisoryState = new int[231];
 
 
     @Override
@@ -43,21 +43,7 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         //Read in CSV data
         list = readCSV(list);
 
-        //Get Advisory State levels
-        for (int i = 2; i < list.size(); i++)
-            advisoryState[i] = Integer.parseInt(list.get(i)[8]);
-
-        //Get Country Names
-        for (int i = 2; i < list.size(); i++)
-            countryName[i] = list.get(i)[6];
-
-        //Get Country IDs
-        for (int i = 2; i < list.size(); i++)
-            countryID[i] = list.get(i)[5];
-
-        //Get URL slugs
-        for (int i = 2; i < list.size(); i++)
-            countryURLslug[i] = list.get(i)[17];
+        ExtractData();
 
         //Set up Buttons
         Button countryButton = (Button) findViewById(R.id.countryButton);
@@ -101,14 +87,15 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home: {
                 return true;
             }
             case R.id.action_help: {
-            }return true;
+            }
+            return true;
 
-            case R.id.action_about:{
+            case R.id.action_about: {
                 return true;
             }
             default:
@@ -140,5 +127,24 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         for (int i = 0; i < countryList.size() - 2; i++)
             newList.add(countryList.get(i + 2));
         return newList;
+    }
+
+    // function to seperate CSV values
+    public void ExtractData() {
+        //Get Advisory State levels
+        for (int i = 2; i < list.size(); i++)
+            advisoryState[i] = Integer.parseInt(list.get(i)[8]);
+
+        //Get Country Names
+        for (int i = 2; i < list.size(); i++)
+            countryName[i] = list.get(i)[6];
+
+        //Get Country IDs
+        for (int i = 2; i < list.size(); i++)
+            countryID[i] = list.get(i)[5];
+
+        //Get URL slugs
+        for (int i = 2; i < list.size(); i++)
+            countryURLslug[i] = list.get(i)[17];
     }
 }

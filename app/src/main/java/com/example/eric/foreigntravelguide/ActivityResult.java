@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
 /**
  * Created by Eric on 4/8/2015.
  */
@@ -27,6 +26,25 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     private TabHost mTabHost;
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, ActivityResult.TabInfo>();
     private TabInfo mLastTab = null;
+
+    private static void addTab(ActivityResult activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
+        // Attach a Tab view factory to the spec
+        tabSpec.setContent(activity.new TabFactory(activity));
+        String tag = tabSpec.getTag();
+
+        // Check to see if we already have a fragment for this tab, probably
+        // from a previously saved state.  If so, deactivate it, because our
+        // initial state is that a tab isn't shown.
+        tabInfo.fragment = activity.getSupportFragmentManager().findFragmentByTag(tag);
+        if (tabInfo.fragment != null && !tabInfo.fragment.isDetached()) {
+            FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+            ft.detach(tabInfo.fragment);
+            ft.commit();
+            activity.getSupportFragmentManager().executePendingTransactions();
+        }
+
+        tabHost.addTab(tabSpec);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,25 +128,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         mTabHost.setOnTabChangedListener(this);
     }
 
-    private static void addTab(ActivityResult activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
-        // Attach a Tab view factory to the spec
-        tabSpec.setContent(activity.new TabFactory(activity));
-        String tag = tabSpec.getTag();
-
-        // Check to see if we already have a fragment for this tab, probably
-        // from a previously saved state.  If so, deactivate it, because our
-        // initial state is that a tab isn't shown.
-        tabInfo.fragment = activity.getSupportFragmentManager().findFragmentByTag(tag);
-        if (tabInfo.fragment != null && !tabInfo.fragment.isDetached()) {
-            FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-            ft.detach(tabInfo.fragment);
-            ft.commit();
-            activity.getSupportFragmentManager().executePendingTransactions();
-        }
-
-        tabHost.addTab(tabSpec);
-    }
-
     public void onTabChanged(String tag) {
         TabInfo newTab = this.mapTabInfo.get(tag);
         if (mLastTab != newTab) {
@@ -152,6 +151,15 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             ft.commit();
             this.getSupportFragmentManager().executePendingTransactions();
         }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_about);
+        MenuItem item2 = menu.findItem(R.id.action_help);
+        item.setVisible(false);
+        item2.setVisible(false);
+        return true;
     }
 
     //Maintains info of a tabs construct
@@ -183,20 +191,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             return v;
         }
     }
-
-
-
-
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item= menu.findItem(R.id.action_about);
-        MenuItem item2= menu.findItem(R.id.action_help);
-        item.setVisible(false);
-        item2.setVisible(false);
-        return true;
-    }
-
 
 
 }
