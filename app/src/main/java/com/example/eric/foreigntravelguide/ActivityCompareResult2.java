@@ -25,6 +25,7 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
     private TabHost mTabHost;
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, ActivityCompareResult2.TabInfo>();
     private TabInfo mLastTab = null;
+
     private static void addTab(ActivityCompareResult2 activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         // Attach a Tab view factory to the spec
         tabSpec.setContent(activity.new TabFactory(activity));
@@ -62,7 +63,7 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         nameList = getCountryNames();
         //Get position of item selected
         Intent intent = getIntent();
-       // Bundle extras = intent.getExtras();
+        // Bundle extras = intent.getExtras();
         if (intent != null) {
             position = intent.getIntExtra("pos", position);
         }

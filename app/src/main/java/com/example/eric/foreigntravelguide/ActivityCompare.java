@@ -88,19 +88,17 @@ public class ActivityCompare extends ActivityForeignTravelGuide {
         Button compareButton = (Button) findViewById(R.id.compareButton);
 
 
-
         //Button on click
         compareButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Set up Intent
-                final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult1.class );
+                final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult1.class);
                 compareIntent.putExtra("secondCountry", secndCountry);
                 compareIntent.putExtra("secndCountryPos", secndCountryPos);
                 compareIntent.putExtra("firstCountryPos", firstCountryPos);
                 startActivity(compareIntent);
             }
         });
-
 
 
     }

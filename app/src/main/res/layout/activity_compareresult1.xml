@@ -71,14 +71,14 @@
                     android:id="@+id/realtabcontent"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1" >
+                    android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/secndcountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/compareMenu"
-                        android:id="@+id/secndcountry"
-                        android:layout_gravity="right|bottom" />
+                        android:layout_gravity="right|bottom"
+                        android:text="@string/compareMenu" />
                 </FrameLayout>
             </LinearLayout>
         </TabHost>

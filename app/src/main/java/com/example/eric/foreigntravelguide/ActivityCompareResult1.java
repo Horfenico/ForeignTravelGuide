@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,8 +26,7 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, ActivityCompareResult1.TabInfo>();
     private TabInfo mLastTab = null;
     private String secndCountryName = "";
-    private  int secndCountryPos = 0;
-
+    private int secndCountryPos = 0;
 
 
     private static void addTab(ActivityCompareResult1 activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
@@ -119,10 +117,10 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
             public void onClick(View v) {
                 int pos = secndCountryPos;
                 //Set up Intent
-                final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult2.class );
+                final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult2.class);
                 compareIntent.putExtra("pos", pos);
                 startActivity(compareIntent);
-               // Toast.makeText(getApplicationContext(), Integer.toString(pos),Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), Integer.toString(pos),Toast.LENGTH_SHORT).show();
             }
         });
 
