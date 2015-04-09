@@ -50,6 +50,11 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         Button searchButton = (Button) findViewById(R.id.searchButton);
         Button compareButton = (Button) findViewById(R.id.compareButton);
 
+        //Set buttons transparent
+        countryButton.getBackground().setAlpha(64);
+        searchButton.getBackground().setAlpha(64);
+        compareButton.getBackground().setAlpha(64);
+
         //Set up Activity Intents
         final Intent countryIntent = new Intent(this, ActivityCountry.class);
         final Intent searchIntent = new Intent(this, ActivitySearch.class);
@@ -130,7 +135,7 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
     }
 
     // function to seperate CSV values
-    public void ExtractData() {
+    private void ExtractData() {
         //Get Advisory State levels
         for (int i = 2; i < list.size(); i++)
             advisoryState[i] = Integer.parseInt(list.get(i)[8]);

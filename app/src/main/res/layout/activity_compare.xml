@@ -23,4 +23,14 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="99dp"
         android:hint="@string/compareText2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/compareButton"
+        android:id="@+id/compareButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="103dp" />
 </RelativeLayout>

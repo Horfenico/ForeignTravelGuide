@@ -49,6 +49,9 @@
         <activity
             android:name=".ActivityMaps"
             android:label="@string/title_activity_maps"></activity>
+        <activity android:name=".ActivityCompareResult1" />
+        <activity android:name=".ActivityCompareResult2" />
+
     </application>
 
 </manifest>

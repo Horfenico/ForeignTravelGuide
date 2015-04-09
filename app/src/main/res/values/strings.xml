@@ -4,7 +4,7 @@
     <string name="title">Foreign Travel Guide</string>
     <string name="countryButton">Countries</string>
     <string name="searchButton">Search</string>
-    <string name="compareButton">Compare</string>
+    <string name="compareButton">Go</string>
     <string name="action_about">About</string>
     <string name="action_help">Help</string>
     <string name="action_sortAZ">Sort A-Z</string>
@@ -14,6 +14,7 @@
     <string name="searchText">Enter Desired Destination</string>
     <string name="compareText1">Enter First Desired Location</string>
     <string name="compareText2">Enter Second Desired Location</string>
+    <string name="compareMenu">Compare</string>
     <string name="mapfragText">Map</string>
 
     <!-- TODO: Remove or change this placeholder text -->
