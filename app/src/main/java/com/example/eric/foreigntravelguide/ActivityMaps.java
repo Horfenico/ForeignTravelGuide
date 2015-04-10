@@ -1,21 +1,41 @@
 package com.example.eric.foreigntravelguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ActivityMaps extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private String[] latitude;
+    private String[] longitude;
+    private String selected="";
+    private int pos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        //Get intent
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        pos = intent.getIntExtra("pos",pos);
+        latitude = extras.getStringArray("latitude");
+        longitude = extras.getStringArray("longitude");
+        selected = extras.getString("selected", selected);
+
+        Toast.makeText(this,Integer.toString(pos),Toast.LENGTH_SHORT).show();
+
+
         setUpMapIfNeeded();
     }
 
@@ -63,6 +83,19 @@ public class ActivityMaps extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        double lat = Double.parseDouble(latitude[pos]);
+        double lng = Double.parseDouble(longitude[pos]);
+        Toast.makeText(this, Double.toString(lat) + " " + Double.toString(lng),Toast.LENGTH_SHORT).show();
+        LatLng latLng = new LatLng(lat,lng);
+        CameraPosition cameraPosition =
+                new CameraPosition.Builder()
+                        .target(latLng)
+                        .bearing(0)
+                        .zoom(5)
+                        .tilt(25)
+                        .build();
+        mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
+        CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        mMap.animateCamera(point);
     }
 }

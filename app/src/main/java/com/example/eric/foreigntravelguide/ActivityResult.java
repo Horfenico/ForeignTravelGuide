@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -26,6 +29,8 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     private TabHost mTabHost;
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, ActivityResult.TabInfo>();
     private TabInfo mLastTab = null;
+    private int position = 0;
+    private String selected = "";
 
     private static void addTab(ActivityResult activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         // Attach a Tab view factory to the spec
@@ -50,7 +55,12 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        int position = 0;
+        position = 0;
+        selected = "";
+        final String[] latitude = getResources().getStringArray(R.array.latitude);
+        final String[] longitude = getResources().getStringArray(R.array.longitude);
+
+
 
         //Initialise tab host
         this.initialiseTabHost(savedInstanceState);
@@ -61,17 +71,46 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
 
         //Get Country Names
         List<String> nameList = new ArrayList<>();
+        List<String> highAdv = countryAdvisoryHighLow();
+        List<String> lowAdv = countryAdvisoryLowHigh();
+        List <String>NamesZAList = new LinkedList<>();
         nameList = getCountryNames();
+        String[] namesZA = new String[nameList.size()];
         //Get position of item selected
         Intent intent = getIntent();
-        if (null != intent)
+        Bundle extras = intent.getExtras();
+        if (intent != null) {
             position = intent.getIntExtra("pos", position);
+            try {
+                selected = extras.getString("selected");
+            } catch (Exception e) {
+                selected = "";
+            }
+            try {
+                namesZA = extras.getStringArray("namesZA");
+            } catch (Exception e) {
+                namesZA = null;
+            }
+
+        }
+        if (namesZA != null)
+        NamesZAList = new LinkedList<>(Arrays.asList(namesZA));
 
         //Set action bar title
         ActionBar bar = getSupportActionBar();
         bar.setHomeButtonEnabled(true);
         TextView title = (TextView) findViewById(R.id.title);
-        title.setText(nameList.get(position));
+        if (selected == null)
+            title.setText(nameList.get(position));
+        else if (selected.equals(nameList.get(position)))
+            title.setText(nameList.get(position));
+        else if (selected.equals(NamesZAList.get(position)))
+            title.setText(NamesZAList.get(position));
+        else if(selected.equals(highAdv.get(position)))
+            title.setText(highAdv.get(position));
+        else if(selected.equals(lowAdv.get(position)))
+            title.setText(lowAdv.get(position));
+
 
         //Get reference to activity fragment manager
         FragmentManager manager = getSupportFragmentManager();
@@ -95,15 +134,20 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         //Set up Button
         Button mapButton = (Button) findViewById(R.id.mapButton);
 
-        //Map Intent
-        final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
 
         //Button On Click
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //Map Intent
+                final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
+                mapIntent.putExtra("latitude", latitude);
+                mapIntent.putExtra("longitude", longitude);
+                mapIntent.putExtra("pos",position);
+                mapIntent.putExtra("selected", selected);
                 startActivity(mapIntent);
             }
         });
+
     }
 
     protected void onSaveInstanceState(Bundle outState) {
