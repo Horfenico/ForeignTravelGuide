@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,8 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     private TabInfo mLastTab = null;
     private int position = 0;
     private String selected = "";
+    private String[] namesZA;
+    private String[] namList;
 
     private static void addTab(ActivityResult activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         // Attach a Tab view factory to the spec
@@ -71,11 +74,13 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
 
         //Get Country Names
         List<String> nameList = new ArrayList<>();
-        List<String> highAdv = countryAdvisoryHighLow();
-        List<String> lowAdv = countryAdvisoryLowHigh();
+        final List<String> highAdv = countryAdvisoryHighLow();
+        final List<String> lowAdv = countryAdvisoryLowHigh();
         List <String>NamesZAList = new LinkedList<>();
         nameList = getCountryNames();
-        String[] namesZA = new String[nameList.size()];
+        namesZA = new String[nameList.size()];
+        namList = new String[nameList.size()];
+        namList = nameList.toArray(namList);
         //Get position of item selected
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -104,8 +109,10 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             title.setText(nameList.get(position));
         else if (selected.equals(nameList.get(position)))
             title.setText(nameList.get(position));
-        else if (selected.equals(NamesZAList.get(position)))
-            title.setText(NamesZAList.get(position));
+        else if (!NamesZAList.isEmpty()) {
+            if (selected.equals(NamesZAList.get(position)))
+                title.setText(NamesZAList.get(position));
+        }
         else if(selected.equals(highAdv.get(position)))
             title.setText(highAdv.get(position));
         else if(selected.equals(lowAdv.get(position)))
@@ -139,11 +146,20 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Map Intent
+                String[] highAdvs = new String [highAdv.size()];
+                String[] lowAdvs = new String [lowAdv.size()];
+                highAdvs = highAdv.toArray(highAdvs);
+                lowAdvs = lowAdv.toArray(lowAdvs);
+
                 final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
                 mapIntent.putExtra("latitude", latitude);
                 mapIntent.putExtra("longitude", longitude);
                 mapIntent.putExtra("pos",position);
                 mapIntent.putExtra("selected", selected);
+                mapIntent.putExtra("namesZA",namesZA);
+                mapIntent.putExtra("highAdv", highAdvs);
+                mapIntent.putExtra("lowAdv", lowAdvs);
+                mapIntent.putExtra("nameList", namList);
                 startActivity(mapIntent);
             }
         });
@@ -233,6 +249,28 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             v.setMinimumHeight(0);
             v.setMinimumWidth(0);
             return v;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
