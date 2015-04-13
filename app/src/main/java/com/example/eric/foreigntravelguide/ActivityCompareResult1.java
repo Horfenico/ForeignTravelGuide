@@ -90,12 +90,13 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         if (extras != null) {
             position = intent.getIntExtra("firstCountryPos", position);
             secndCountryPos = intent.getIntExtra("secndCountryPos", secndCountryPos);
-            secndCountryName = intent.getStringExtra("selected");
 
             try {
                 selected = extras.getString("selected");
+                secndCountryName = extras.getString("secondCountry");
             } catch (Exception e) {
                 selected = "";
+                secndCountryName = "";
             }
 
         }
@@ -115,7 +116,6 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
 
         //Create frag objects
         FragmentFlag flag = new FragmentFlag();
-        flag.setArguments(flagFrag);
         FragmentFood food = new FragmentFood();
         FragmentMap map = new FragmentMap();
         flagFrag.putStringArray("nameList", namList);
@@ -141,6 +141,7 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         transaction.add(R.id.mapFrag, map, "Map");
 
         //Commit Transaction
+        flag.setArguments(flagFrag);
         transaction.commit();
 
         //Set up Button
@@ -158,6 +159,9 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
                 mapIntent.putExtra("longitude", longitude);
                 mapIntent.putExtra("pos", position);
                 mapIntent.putExtra("selected", selected);
+                mapIntent.putExtra("namesZA", namesZA);
+                mapIntent.putExtra("highAdv", highAdvs);
+                mapIntent.putExtra("lowAdv", lowAdvs);
 
                 startActivity(mapIntent);
             }
@@ -167,8 +171,8 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
                 int pos = secndCountryPos;
                 //Set up Intent
                 final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult2.class);
-                compareIntent.putExtra("pos", pos);
-                compareIntent.putExtra("secondCountry", secndCountryName);
+                compareIntent.putExtra("position", pos);
+                compareIntent.putExtra("selected", secndCountryName);
                 startActivity(compareIntent);
             }
         });

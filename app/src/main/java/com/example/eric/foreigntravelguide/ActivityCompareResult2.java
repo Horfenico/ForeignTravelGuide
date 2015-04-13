@@ -64,7 +64,6 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         selected = "";
         final String[] latitude = getResources().getStringArray(R.array.latitude);
         final String[] longitude = getResources().getStringArray(R.array.longitude);
-        String second = "";
 
         //Initialise tab host
         this.initialiseTabHost(savedInstanceState);
@@ -78,17 +77,15 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         final List<String> highAdv = countryAdvisoryHighLow();
         final List<String> lowAdv = countryAdvisoryLowHigh();
         nameList = getCountryNames();
-        nameList = getCountryNames();
         namList = new String[nameList.size()];
         namList = nameList.toArray(namList);
         //Get position of item selected
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        //Get position of item selected
-        Intent intent = getIntent();
-        // Bundle extras = intent.getExtras();
-        if (intent != null) {
-            position = intent.getIntExtra("pos", position);
+
+        if (extras != null) {
+            position = intent.getIntExtra("position", position);
+            selected = extras.getString("selected");
         }
 
         //Set action bar title
@@ -107,6 +104,23 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         FragmentFlag flag = new FragmentFlag();
         FragmentFood food = new FragmentFood();
         FragmentMap map = new FragmentMap();
+        flagFrag.putStringArray("nameList", namList);
+
+        highAdvs = new String[highAdv.size()];
+        lowAdvs = new String[lowAdv.size()];
+        highAdvs = highAdv.toArray(highAdvs);
+        lowAdvs = lowAdv.toArray(lowAdvs);
+
+
+        //Frag 1 Extras
+        flagFrag.putInt("position", position);
+        flagFrag.putString("selected", selected);
+        flagFrag.putStringArray("nameList", namList);
+        flagFrag.putStringArray("namesZA", namesZA);
+        flagFrag.putStringArray("highAdv", highAdvs);
+        flagFrag.putStringArray("lowAdv", lowAdvs);
+        flag.setArguments(flagFrag);
+
 
         //Add Fragments to the transaction
         transaction.add(R.id.flagFrag, flag, "Flag");
@@ -125,6 +139,14 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         //Button On Click
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
+                mapIntent.putExtra("latitude", latitude);
+                mapIntent.putExtra("longitude", longitude);
+                mapIntent.putExtra("pos", position);
+                mapIntent.putExtra("selected", selected);
+                mapIntent.putExtra("namesZA", namesZA);
+                mapIntent.putExtra("highAdv", highAdvs);
+                mapIntent.putExtra("lowAdv", lowAdvs);
                 startActivity(mapIntent);
             }
         });

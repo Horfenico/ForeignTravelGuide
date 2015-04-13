@@ -79,7 +79,6 @@ public class ActivityCompare extends ActivityForeignTravelGuide {
                         break;
                     }
                 }
-                //For button
                 secndCountry = selection;
                 secndCountryPos = pos;
                 final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult1.class);
