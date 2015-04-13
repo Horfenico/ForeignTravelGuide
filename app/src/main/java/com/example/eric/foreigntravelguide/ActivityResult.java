@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +33,8 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     private String selected = "";
     private String[] namesZA;
     private String[] namList;
+    private String[] highAdvs;
+    private String[] lowAdvs;
 
     private static void addTab(ActivityResult activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         // Attach a Tab view factory to the spec
@@ -58,6 +59,10 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        Bundle flagFrag = new Bundle();
+
+
         position = 0;
         selected = "";
         final String[] latitude = getResources().getStringArray(R.array.latitude);
@@ -101,6 +106,20 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         if (namesZA != null)
         NamesZAList = new LinkedList<>(Arrays.asList(namesZA));
 
+        highAdvs = new String [highAdv.size()];
+        lowAdvs = new String [lowAdv.size()];
+        highAdvs = highAdv.toArray(highAdvs);
+        lowAdvs = lowAdv.toArray(lowAdvs);
+
+        //Frag 1 Extras
+        flagFrag.putInt("position", position);
+        flagFrag.putString("selected",selected);
+        flagFrag.putStringArray("namesZA",namesZA);
+        flagFrag.putStringArray("highAdv", highAdvs);
+        flagFrag.putStringArray("lowAdv", lowAdvs);
+        flagFrag.putStringArray("nameList", namList);
+
+
         //Set action bar title
         ActionBar bar = getSupportActionBar();
         bar.setHomeButtonEnabled(true);
@@ -127,12 +146,13 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
 
         //Create frag objects
         FragmentFlag flag = new FragmentFlag();
-        FragmentLand land = new FragmentLand();
+        flag.setArguments(flagFrag);
+        FragmentFood food = new FragmentFood();
         FragmentMap map = new FragmentMap();
 
         //Add Fragments to the transaction
         transaction.add(R.id.flagFrag, flag, "Flag");
-        transaction.add(R.id.landFrag, land, "Land");
+        transaction.add(R.id.foodFrag, food, "Food");
         transaction.add(R.id.mapFrag, map, "Map");
 
         //Commit Transaction
@@ -146,10 +166,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Map Intent
-                String[] highAdvs = new String [highAdv.size()];
-                String[] lowAdvs = new String [lowAdv.size()];
-                highAdvs = highAdv.toArray(highAdvs);
-                lowAdvs = lowAdv.toArray(lowAdvs);
 
                 final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
                 mapIntent.putExtra("latitude", latitude);

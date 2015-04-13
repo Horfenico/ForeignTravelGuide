@@ -16,6 +16,7 @@ import com.opencsv.CSVReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -28,6 +29,7 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
     private String[] countryID = new String[231];
     private String[] countryURLslug = new String[231];
     private int[] advisoryState = new int[231];
+
 
 
     @Override
@@ -259,4 +261,7 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
 
         return lowHigh;
     }
+
+
+
 }

@@ -82,12 +82,12 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
 
         //Create frag objects
         FragmentFlag flag = new FragmentFlag();
-        FragmentLand land = new FragmentLand();
+        FragmentFood food = new FragmentFood();
         FragmentMap map = new FragmentMap();
 
         //Add Fragments to the transaction
         transaction.add(R.id.flagFrag, flag, "Flag");
-        transaction.add(R.id.landFrag, land, "Land");
+        transaction.add(R.id.landFrag, food, "Food");
         transaction.add(R.id.mapFrag, map, "Map");
 
         //Commit Transaction
