@@ -27,6 +27,9 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
     private TabInfo mLastTab = null;
     private String secndCountryName = "";
     private int secndCountryPos = 0;
+    private int position = 0;
+    private String selected = "";
+    private String[] namList;
 
 
     private static void addTab(ActivityCompareResult1 activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
@@ -52,7 +55,13 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compareresult1);
-        int position = 0;
+
+        Bundle flagFrag = new Bundle();
+
+        position = 0;
+        selected = "";
+        final String[] latitude = getResources().getStringArray(R.array.latitude);
+        final String[] longitude = getResources().getStringArray(R.array.longitude);
 
 
         //Initialise tab host
@@ -64,7 +73,11 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
 
         //Get Country Names
         List<String> nameList = new ArrayList<>();
+        final List<String> highAdv = countryAdvisoryHighLow();
+        final List<String> lowAdv = countryAdvisoryLowHigh();
         nameList = getCountryNames();
+        namList = new String[nameList.size()];
+        namList = nameList.toArray(namList);
         //Get position of item selected
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -72,7 +85,14 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         if (extras != null) {
             position = intent.getIntExtra("firstCountryPos", position);
             secndCountryPos = intent.getIntExtra("secndCountryPos", secndCountryPos);
+            try {
+                selected = extras.getString("selected");
+            } catch (Exception e) {
+                selected = "";
+            }
+
         }
+
 
         //Set action bar title
         ActionBar bar = getSupportActionBar();
@@ -90,6 +110,13 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         FragmentFlag flag = new FragmentFlag();
         FragmentFood food = new FragmentFood();
         FragmentMap map = new FragmentMap();
+        flagFrag.putStringArray("nameList", namList);
+
+        //Frag 1 Extras
+        flagFrag.putInt("position", position);
+        flagFrag.putString("selected", selected);
+        flagFrag.putStringArray("nameList", namList);
+
 
         //Add Fragments to the transaction
         transaction.add(R.id.flagFrag, flag, "Flag");
@@ -105,11 +132,15 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
 
 
         //Map Intent
-        final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
 
         //Button On Click
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
+                mapIntent.putExtra("latitude", latitude);
+                mapIntent.putExtra("longitude", longitude);
+                mapIntent.putExtra("pos", position);
+                mapIntent.putExtra("selected", selected);
                 startActivity(mapIntent);
             }
         });
@@ -120,7 +151,6 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
                 final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult2.class);
                 compareIntent.putExtra("pos", pos);
                 startActivity(compareIntent);
-                // Toast.makeText(getApplicationContext(), Integer.toString(pos),Toast.LENGTH_SHORT).show();
             }
         });
 

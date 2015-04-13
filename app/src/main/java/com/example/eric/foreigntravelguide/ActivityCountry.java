@@ -47,7 +47,7 @@ public class ActivityCountry extends ActivityForeignTravelGuide {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 String selected = parent.getItemAtPosition(position).toString();
                 final Intent countryIntent = new Intent(getApplicationContext(), ActivityResult.class);
-                countryIntent.putExtra("pos", position);
+                countryIntent.putExtra("position", position);
                 countryIntent.putExtra("selected", selected);
                 countryIntent.putExtra("namesZA", namesZA);
                 startActivity(countryIntent);
@@ -84,7 +84,7 @@ public class ActivityCountry extends ActivityForeignTravelGuide {
                 String[] names = new String[nameList.size()];
                 names = nameList.toArray(names);
                 namesZA = new String[nameList.size()];
-                List <String>namesZAList = new LinkedList<>();
+                List<String> namesZAList = new LinkedList<>();
                 int c = 0;
 
                 for (int i = names.length - 1; i > -1; i--) {

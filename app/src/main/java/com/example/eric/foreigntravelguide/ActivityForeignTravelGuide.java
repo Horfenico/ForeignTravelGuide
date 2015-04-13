@@ -10,13 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -29,7 +27,6 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
     private String[] countryID = new String[231];
     private String[] countryURLslug = new String[231];
     private int[] advisoryState = new int[231];
-
 
 
     @Override
@@ -159,30 +156,30 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
 
     public List<String> countryAdvisoryHighLow() {
         String[] adv = new String[advisoryState.length];
-        for (int i = 2; i < advisoryState.length -2; i++)
-            adv[i] = Integer.toString(advisoryState[i+2]);
+        for (int i = 2; i < advisoryState.length - 2; i++)
+            adv[i] = Integer.toString(advisoryState[i + 2]);
         List<String> countryList = new LinkedList<>(Arrays.asList(countryName));
         List<String> advisryList = new LinkedList<>(Arrays.asList(adv));
         List<String> highLow = new LinkedList<>();
         int cnt = 0;
 
         do {
-            if(advisryList.get(cnt) != null) {
+            if (advisryList.get(cnt) != null) {
                 if (advisryList.get(cnt).equals("3"))
                     highLow.add(countryList.get(cnt));
             }
-           cnt++;
-        }while(cnt < countryList.size());
+            cnt++;
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
         do {
-            if(advisryList.get(cnt) != null) {
+            if (advisryList.get(cnt) != null) {
                 if (advisryList.get(cnt).equals("2"))
                     highLow.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
@@ -192,17 +189,17 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
                     highLow.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
         do {
-            if(advisryList.get(cnt) != null) {
+            if (advisryList.get(cnt) != null) {
                 if (advisryList.get(cnt).equals("0"))
                     highLow.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
@@ -212,30 +209,30 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
 
     public List<String> countryAdvisoryLowHigh() {
         String[] adv = new String[advisoryState.length];
-        for (int i = 2; i < advisoryState.length -2; i++)
-            adv[i] = Integer.toString(advisoryState[i+2]);
+        for (int i = 2; i < advisoryState.length - 2; i++)
+            adv[i] = Integer.toString(advisoryState[i + 2]);
         List<String> countryList = new LinkedList<>(Arrays.asList(countryName));
         List<String> advisryList = new LinkedList<>(Arrays.asList(adv));
         List<String> lowHigh = new LinkedList<>();
         int cnt = 0;
 
         do {
-            if(advisryList.get(cnt) != null) {
+            if (advisryList.get(cnt) != null) {
                 if (advisryList.get(cnt).equals("0"))
                     lowHigh.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
         do {
-            if(advisryList.get(cnt) != null) {
+            if (advisryList.get(cnt) != null) {
                 if (advisryList.get(cnt).equals("1"))
                     lowHigh.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
@@ -245,23 +242,22 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
                     lowHigh.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
         do {
-            if(advisryList.get(cnt) != null) {
+            if (advisryList.get(cnt) != null) {
                 if (advisryList.get(cnt).equals("3"))
                     lowHigh.add(countryList.get(cnt));
             }
             cnt++;
-        }while(cnt < countryList.size());
+        } while (cnt < countryList.size());
 
         cnt = 0;
 
         return lowHigh;
     }
-
 
 
 }

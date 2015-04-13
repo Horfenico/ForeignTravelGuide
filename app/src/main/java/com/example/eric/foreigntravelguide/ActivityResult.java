@@ -69,7 +69,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         final String[] longitude = getResources().getStringArray(R.array.longitude);
 
 
-
         //Initialise tab host
         this.initialiseTabHost(savedInstanceState);
 
@@ -81,7 +80,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         List<String> nameList = new ArrayList<>();
         final List<String> highAdv = countryAdvisoryHighLow();
         final List<String> lowAdv = countryAdvisoryLowHigh();
-        List <String>NamesZAList = new LinkedList<>();
+        List<String> NamesZAList = new LinkedList<>();
         nameList = getCountryNames();
         namesZA = new String[nameList.size()];
         namList = new String[nameList.size()];
@@ -90,7 +89,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (intent != null) {
-            position = intent.getIntExtra("pos", position);
+            position = intent.getIntExtra("position", position);
             try {
                 selected = extras.getString("selected");
             } catch (Exception e) {
@@ -104,17 +103,18 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
 
         }
         if (namesZA != null)
-        NamesZAList = new LinkedList<>(Arrays.asList(namesZA));
+            NamesZAList = new LinkedList<>(Arrays.asList(namesZA));
 
-        highAdvs = new String [highAdv.size()];
-        lowAdvs = new String [lowAdv.size()];
+        highAdvs = new String[highAdv.size()];
+        lowAdvs = new String[lowAdv.size()];
         highAdvs = highAdv.toArray(highAdvs);
         lowAdvs = lowAdv.toArray(lowAdvs);
 
         //Frag 1 Extras
         flagFrag.putInt("position", position);
-        flagFrag.putString("selected",selected);
-        flagFrag.putStringArray("namesZA",namesZA);
+        flagFrag.putString("selected", selected);
+        if (namesZA!= null)
+            flagFrag.putStringArray("namesZA", namesZA);
         flagFrag.putStringArray("highAdv", highAdvs);
         flagFrag.putStringArray("lowAdv", lowAdvs);
         flagFrag.putStringArray("nameList", namList);
@@ -131,10 +131,9 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         else if (!NamesZAList.isEmpty()) {
             if (selected.equals(NamesZAList.get(position)))
                 title.setText(NamesZAList.get(position));
-        }
-        else if(selected.equals(highAdv.get(position)))
+        } else if (selected.equals(highAdv.get(position)))
             title.setText(highAdv.get(position));
-        else if(selected.equals(lowAdv.get(position)))
+        else if (selected.equals(lowAdv.get(position)))
             title.setText(lowAdv.get(position));
 
 
@@ -170,9 +169,9 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
                 final Intent mapIntent = new Intent(getApplicationContext(), ActivityMaps.class);
                 mapIntent.putExtra("latitude", latitude);
                 mapIntent.putExtra("longitude", longitude);
-                mapIntent.putExtra("pos",position);
+                mapIntent.putExtra("pos", position);
                 mapIntent.putExtra("selected", selected);
-                mapIntent.putExtra("namesZA",namesZA);
+                mapIntent.putExtra("namesZA", namesZA);
                 mapIntent.putExtra("highAdv", highAdvs);
                 mapIntent.putExtra("lowAdv", lowAdvs);
                 mapIntent.putExtra("nameList", namList);
@@ -238,6 +237,28 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     //Maintains info of a tabs construct
     private class TabInfo {
         private String tag;
@@ -265,28 +286,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             v.setMinimumHeight(0);
             v.setMinimumWidth(0);
             return v;
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 

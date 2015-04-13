@@ -47,7 +47,8 @@ public class ActivitySearch extends ActivityForeignTravelGuide {
                     }
                 }
                 final Intent countryIntent = new Intent(getApplicationContext(), ActivityResult.class);
-                countryIntent.putExtra("pos", pos);
+                countryIntent.putExtra("position", pos);
+                countryIntent.putExtra("selected", selection);
                 startActivity(countryIntent);
             }
         });

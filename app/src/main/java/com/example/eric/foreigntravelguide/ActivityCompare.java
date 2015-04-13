@@ -27,6 +27,8 @@ public class ActivityCompare extends ActivityForeignTravelGuide {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
 
+        Bundle extras = new Bundle();
+
 
         //Set Action Bar
         ActionBar bar = getSupportActionBar();

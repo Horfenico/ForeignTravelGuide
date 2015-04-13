@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,7 +28,7 @@ public class ActivityMaps extends FragmentActivity {
     private String[] nameList;
     private String[] highAdv;
     private String[] lowAdv;
-    private String selected="";
+    private String selected = "";
     private int pos = 0;
 
     @Override
@@ -39,7 +38,7 @@ public class ActivityMaps extends FragmentActivity {
         //Get intent
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        pos = intent.getIntExtra("pos",pos);
+        pos = intent.getIntExtra("pos", pos);
         latitude = extras.getStringArray("latitude");
         longitude = extras.getStringArray("longitude");
         selected = extras.getString("selected", selected);
@@ -98,35 +97,34 @@ public class ActivityMaps extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-      if(namesZA != null) {
-          if (selected.equals(namesZA[pos])) {
-              latZA = new String[latitude.length];
-              lngZA = new String[longitude.length];
-              sortLatZA();
-              sortLongZA();
-              double lat = Double.parseDouble(latZA[pos]);
-              double lng = Double.parseDouble(lngZA[pos]);
-              LatLng latLng = new LatLng(lat, lng);
-              CameraPosition cameraPosition =
-                      new CameraPosition.Builder()
-                              .target(latLng)
-                              .bearing(0)
-                              .zoom(5)
-                              .tilt(25)
-                              .build();
-              mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
-              CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
-              mMap.animateCamera(point);
-          }
-      }
-        else if(selected.equals(highAdv[pos])){
+        if (namesZA != null) {
+            if (selected.equals(namesZA[pos])) {
+                latZA = new String[latitude.length];
+                lngZA = new String[longitude.length];
+                sortLatZA();
+                sortLongZA();
+                double lat = Double.parseDouble(latZA[pos]);
+                double lng = Double.parseDouble(lngZA[pos]);
+                LatLng latLng = new LatLng(lat, lng);
+                CameraPosition cameraPosition =
+                        new CameraPosition.Builder()
+                                .target(latLng)
+                                .bearing(0)
+                                .zoom(5)
+                                .tilt(25)
+                                .build();
+                mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
+                CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                mMap.animateCamera(point);
+            }
+        } else if (selected.equals(highAdv[pos])) {
             latHighAdv = new String[latitude.length];
             lngHighAdv = new String[longitude.length];
             sortLatHighAdv();
             sortLngHighAdv();
             double lat = Double.parseDouble(latHighAdv[pos]);
             double lng = Double.parseDouble(lngHighAdv[pos]);
-            LatLng latLng = new LatLng(lat,lng);
+            LatLng latLng = new LatLng(lat, lng);
             CameraPosition cameraPosition =
                     new CameraPosition.Builder()
                             .target(latLng)
@@ -137,15 +135,14 @@ public class ActivityMaps extends FragmentActivity {
             mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
             CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
             mMap.animateCamera(point);
-        }
-        else if(selected.equals(lowAdv[pos])){
+        } else if (selected.equals(lowAdv[pos])) {
             latLowAdv = new String[latitude.length];
             lngLowAdv = new String[longitude.length];
             sortLatLowAdv();
             sortLngLowAdv();
             double lat = Double.parseDouble(latLowAdv[pos]);
             double lng = Double.parseDouble(lngLowAdv[pos]);
-            LatLng latLng = new LatLng(lat,lng);
+            LatLng latLng = new LatLng(lat, lng);
             CameraPosition cameraPosition =
                     new CameraPosition.Builder()
                             .target(latLng)
@@ -156,8 +153,7 @@ public class ActivityMaps extends FragmentActivity {
             mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
             CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
             mMap.animateCamera(point);
-        }
-        else {
+        } else {
             double lat = Double.parseDouble(latitude[pos]);
             double lng = Double.parseDouble(longitude[pos]);
             LatLng latLng = new LatLng(lat, lng);
@@ -174,51 +170,53 @@ public class ActivityMaps extends FragmentActivity {
         }
     }
 
-    private void sortLatZA(){
+    private void sortLatZA() {
         int c = 0;
-        for (int i = latitude.length-1; i > -1; i--) {
+        for (int i = latitude.length - 1; i > -1; i--) {
             latZA[c] = latitude[i];
             c++;
         }
     }
-    private void sortLongZA(){
+
+    private void sortLongZA() {
         int c = 0;
-        for (int i = longitude.length-1; i > -1; i--) {
+        for (int i = longitude.length - 1; i > -1; i--) {
             lngZA[c] = longitude[i];
             c++;
         }
     }
-    private void sortLatHighAdv(){
-        for (int i = 0; i < highAdv.length; i++){
-            for(int j = 0; j < nameList.length; j++){
-                if(highAdv[i].equals(nameList[j]))
+
+    private void sortLatHighAdv() {
+        for (int i = 0; i < highAdv.length; i++) {
+            for (int j = 0; j < nameList.length; j++) {
+                if (highAdv[i].equals(nameList[j]))
                     latHighAdv[i] = latitude[j];
             }
         }
     }
 
-    private void sortLatLowAdv(){
-        for (int i = 0; i < lowAdv.length; i++){
-            for(int j = 0; j < nameList.length; j++){
-                if(lowAdv[i].equals(nameList[j]))
+    private void sortLatLowAdv() {
+        for (int i = 0; i < lowAdv.length; i++) {
+            for (int j = 0; j < nameList.length; j++) {
+                if (lowAdv[i].equals(nameList[j]))
                     latLowAdv[i] = latitude[j];
             }
         }
     }
 
-    private void sortLngHighAdv(){
-        for (int i = 0; i < highAdv.length; i++){
-            for(int j = 0; j < nameList.length; j++){
-                if(highAdv[i].equals(nameList[j]))
+    private void sortLngHighAdv() {
+        for (int i = 0; i < highAdv.length; i++) {
+            for (int j = 0; j < nameList.length; j++) {
+                if (highAdv[i].equals(nameList[j]))
                     lngHighAdv[i] = longitude[j];
             }
         }
     }
 
-    private void sortLngLowAdv(){
-        for (int i = 0; i < lowAdv.length; i++){
-            for(int j = 0; j < nameList.length; j++){
-                if(lowAdv[i].equals(nameList[j]))
+    private void sortLngLowAdv() {
+        for (int i = 0; i < lowAdv.length; i++) {
+            for (int j = 0; j < nameList.length; j++) {
+                if (lowAdv[i].equals(nameList[j]))
                     lngLowAdv[i] = longitude[j];
             }
         }

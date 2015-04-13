@@ -12,12 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.lang.reflect.Field;
-
 
 /**
  * A simple {@link Fragment} subclass.
- *
  */
 
 public class FragmentFlag extends Fragment {
@@ -40,7 +37,7 @@ public class FragmentFlag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         TypedArray flag = getResources().obtainTypedArray(R.array.flags);
-         flags = new String[flag.length()];
+        flags = new String[flag.length()];
         flags = getResources().getStringArray(R.array.flags);
         int pos = 0;
         String selected;
@@ -48,71 +45,90 @@ public class FragmentFlag extends Fragment {
         Bundle bundle = this.getArguments();
 
         View v = inflater.inflate(R.layout.fragment_flag, container, false);
-
-
-
-        if (bundle != null){
             pos = bundle.getInt("position", pos);
             selected = bundle.getString("selected");
             namesZA = bundle.getStringArray("namesZA");
             nameList = bundle.getStringArray("nameList");
             highAdv = bundle.getStringArray("highAdv");
             lowAdv = bundle.getStringArray("lowAdv");
+
+        try {
             if (namesZA != null) {
                 if (selected.equals(namesZA[pos])) {
                     flagsZA = new String[namesZA.length];
                     flagsZA();
+                    String s = flagsZA[pos].replace(".png", "").trim();
+                    int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+                    ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
+                    Drawable image = getResources().getDrawable(id);
+                    imageview.setImageDrawable(image);
                 }
             }
-
-            else if(selected.equals(highAdv[pos])) {
-                flagsHigh = new String[highAdv.length];
-                sortHighAdv();
+            else if (highAdv != null) {
+                if (selected.equals(highAdv[pos])) {
+                    flagsHigh = new String[highAdv.length];
+                    sortHighAdv();
+                    String s = flagsHigh[pos].replace(".png", "").trim();
+                    int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+                    ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
+                    Drawable image = getResources().getDrawable(id);
+                    imageview.setImageDrawable(image);
+                }
             }
-            else if(selected.equals(lowAdv[pos])) {
-                flagsLow = new String[lowAdv.length];
-                sortLowAdv();
+            else if (lowAdv != null) {
+                if (selected.equals(lowAdv[pos])) {
+                    flagsLow = new String[lowAdv.length];
+                    sortLowAdv();
+                    String s = flagsLow[pos].replace(".png", "").trim();
+                    int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+                    ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
+                    Drawable image = getResources().getDrawable(id);
+                    imageview.setImageDrawable(image);
+                }
             }
-        }
-        if (flagsZA != null){
-            String s = flagsZA[pos].replace(".png","").trim();
+                String s = flags[pos].replace(".png", "").trim();
+                int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+                Log.d("id", Integer.toString(id) + " " + s);
+                ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
+                Drawable image = getResources().getDrawable(id);
+                imageview.setImageDrawable(image);
 
-            int  id = getResources().getIdentifier(s,"drawable",getActivity().getPackageName());
+        }catch(Exception e){
+            e.printStackTrace();
+        }if(selected.equals(flags[pos])) {
+            String s = flags[pos].replace(".png", "").trim();
+            int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+            Log.d("id", Integer.toString(id) + " " + s);
             ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
-            imageview.setImageResource(id);
-
-        }
-        else {
-
-            String s = flags[pos].replace(".png","").trim();
-            int id = getResources().getIdentifier(s,"drawable",getActivity().getPackageName());
-
-            Log.d("id", Integer.toString(id) +" " + s);
-            ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
-            imageview.setImageResource(id);
+            Drawable image = getResources().getDrawable(id);
+            imageview.setImageDrawable(image);
         }
         return v;
     }
 
-    private void flagsZA(){
+    private void flagsZA() {
         int c = 0;
-        for(int i = flags.length-1; i > -1; i--) {
+        for (int i = flags.length - 1; i > -1; i--) {
             flagsZA[c] = flags[i];
             c++;
         }
     }
 
-    private void sortHighAdv(){
-        for(int i = 0; i < highAdv.length;i++){
-            for(int j = 0; j < nameList.length; j++)
-                flagsHigh[i] = flags[j];
+    private void sortHighAdv() {
+        for (int i = 0; i < highAdv.length; i++) {
+            for (int j = 0; j < nameList.length; j++) {
+                if (highAdv[i].equals(nameList[j]))
+                    flagsHigh[i] = flags[j];
+            }
         }
     }
 
-    private void sortLowAdv(){
-        for(int i = 0; i < lowAdv.length;i++){
-            for(int j = 0; j < nameList.length; j++)
-                flagsLow[i] = flags[j];
+    private void sortLowAdv() {
+        for (int i = 0; i < lowAdv.length; i++) {
+            for (int j = 0; j < nameList.length; j++) {
+                if (lowAdv[i].equals(nameList[j]))
+                    flagsLow[i] = flags[j];
+            }
         }
     }
 
