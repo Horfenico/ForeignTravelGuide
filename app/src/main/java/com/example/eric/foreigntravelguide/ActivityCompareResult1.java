@@ -30,6 +30,10 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
     private int position = 0;
     private String selected = "";
     private String[] namList;
+    private String[] highAdvs;
+    private String[] lowAdvs;
+    private String[] namesZA;
+
 
 
     private static void addTab(ActivityCompareResult1 activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
@@ -62,6 +66,7 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         selected = "";
         final String[] latitude = getResources().getStringArray(R.array.latitude);
         final String[] longitude = getResources().getStringArray(R.array.longitude);
+        String second = "";
 
 
         //Initialise tab host
@@ -85,6 +90,8 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         if (extras != null) {
             position = intent.getIntExtra("firstCountryPos", position);
             secndCountryPos = intent.getIntExtra("secndCountryPos", secndCountryPos);
+            secndCountryName = intent.getStringExtra("selected");
+
             try {
                 selected = extras.getString("selected");
             } catch (Exception e) {
@@ -108,14 +115,24 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
 
         //Create frag objects
         FragmentFlag flag = new FragmentFlag();
+        flag.setArguments(flagFrag);
         FragmentFood food = new FragmentFood();
         FragmentMap map = new FragmentMap();
         flagFrag.putStringArray("nameList", namList);
+
+        highAdvs = new String[highAdv.size()];
+        lowAdvs = new String[lowAdv.size()];
+        highAdvs = highAdv.toArray(highAdvs);
+        lowAdvs = lowAdv.toArray(lowAdvs);
+
 
         //Frag 1 Extras
         flagFrag.putInt("position", position);
         flagFrag.putString("selected", selected);
         flagFrag.putStringArray("nameList", namList);
+        flagFrag.putStringArray("namesZA", namesZA);
+        flagFrag.putStringArray("highAdv", highAdvs);
+        flagFrag.putStringArray("lowAdv", lowAdvs);
 
 
         //Add Fragments to the transaction
@@ -141,6 +158,7 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
                 mapIntent.putExtra("longitude", longitude);
                 mapIntent.putExtra("pos", position);
                 mapIntent.putExtra("selected", selected);
+
                 startActivity(mapIntent);
             }
         });
@@ -150,6 +168,7 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
                 //Set up Intent
                 final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult2.class);
                 compareIntent.putExtra("pos", pos);
+                compareIntent.putExtra("secondCountry", secndCountryName);
                 startActivity(compareIntent);
             }
         });

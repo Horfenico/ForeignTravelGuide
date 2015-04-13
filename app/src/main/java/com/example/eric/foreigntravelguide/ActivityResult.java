@@ -113,8 +113,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         //Frag 1 Extras
         flagFrag.putInt("position", position);
         flagFrag.putString("selected", selected);
-        if (namesZA!= null)
-            flagFrag.putStringArray("namesZA", namesZA);
+        flagFrag.putStringArray("namesZA", namesZA);
         flagFrag.putStringArray("highAdv", highAdvs);
         flagFrag.putStringArray("lowAdv", lowAdvs);
         flagFrag.putStringArray("nameList", namList);

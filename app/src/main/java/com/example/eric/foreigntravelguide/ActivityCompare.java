@@ -82,25 +82,17 @@ public class ActivityCompare extends ActivityForeignTravelGuide {
                 //For button
                 secndCountry = selection;
                 secndCountryPos = pos;
-
-            }
-        });
-
-        //Set up button
-        Button compareButton = (Button) findViewById(R.id.compareButton);
-
-
-        //Button on click
-        compareButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Set up Intent
                 final Intent compareIntent = new Intent(getApplicationContext(), ActivityCompareResult1.class);
+                compareIntent.putExtra("selected", firstCountry);
                 compareIntent.putExtra("secondCountry", secndCountry);
                 compareIntent.putExtra("secndCountryPos", secndCountryPos);
                 compareIntent.putExtra("firstCountryPos", firstCountryPos);
                 startActivity(compareIntent);
+
             }
         });
+
+
 
 
     }

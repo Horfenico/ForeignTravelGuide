@@ -1,7 +1,6 @@
 package com.example.eric.foreigntravelguide;
 
 
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -41,68 +40,53 @@ public class FragmentFlag extends Fragment {
         flags = getResources().getStringArray(R.array.flags);
         int pos = 0;
         String selected;
-        Resources r = getResources();
         Bundle bundle = this.getArguments();
 
         View v = inflater.inflate(R.layout.fragment_flag, container, false);
-            pos = bundle.getInt("position", pos);
-            selected = bundle.getString("selected");
-            namesZA = bundle.getStringArray("namesZA");
-            nameList = bundle.getStringArray("nameList");
-            highAdv = bundle.getStringArray("highAdv");
-            lowAdv = bundle.getStringArray("lowAdv");
 
-        try {
-            if (namesZA != null) {
-                if (selected.equals(namesZA[pos])) {
-                    flagsZA = new String[namesZA.length];
-                    flagsZA();
-                    String s = flagsZA[pos].replace(".png", "").trim();
-                    int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-                    ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
-                    Drawable image = getResources().getDrawable(id);
-                    imageview.setImageDrawable(image);
-                }
-            }
-            else if (highAdv != null) {
-                if (selected.equals(highAdv[pos])) {
-                    flagsHigh = new String[highAdv.length];
-                    sortHighAdv();
-                    String s = flagsHigh[pos].replace(".png", "").trim();
-                    int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-                    ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
-                    Drawable image = getResources().getDrawable(id);
-                    imageview.setImageDrawable(image);
-                }
-            }
-            else if (lowAdv != null) {
-                if (selected.equals(lowAdv[pos])) {
-                    flagsLow = new String[lowAdv.length];
-                    sortLowAdv();
-                    String s = flagsLow[pos].replace(".png", "").trim();
-                    int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-                    ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
-                    Drawable image = getResources().getDrawable(id);
-                    imageview.setImageDrawable(image);
-                }
-            }
-                String s = flags[pos].replace(".png", "").trim();
+        pos = bundle.getInt("position", pos);
+        selected = bundle.getString("selected");
+        namesZA = bundle.getStringArray("namesZA");
+        nameList = bundle.getStringArray("nameList");
+        highAdv = bundle.getStringArray("highAdv");
+        lowAdv = bundle.getStringArray("lowAdv");
+        if (namesZA != null) {
+            if (selected.equals(namesZA[pos])) {
+                flagsZA = new String[namesZA.length];
+                flagsZA();
+                String s = flagsZA[pos].replace(".png", "").trim();
                 int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-                Log.d("id", Integer.toString(id) + " " + s);
                 ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
                 Drawable image = getResources().getDrawable(id);
                 imageview.setImageDrawable(image);
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }if(selected.equals(flags[pos])) {
+            }
+        }
+       else if (selected.equals(highAdv[pos])) {
+            flagsHigh = new String[highAdv.length];
+            sortHighAdv();
+            String s = flagsHigh[pos].replace(".png", "").trim();
+            int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+            drawImage(id, v);
+        }
+      else if (selected.equals(lowAdv[pos])) {
+            flagsLow = new String[lowAdv.length];
+            sortLowAdv();
+            String s = flagsLow[pos].replace(".png", "").trim();
+            int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
+            drawImage(id, v);
+        } else {
             String s = flags[pos].replace(".png", "").trim();
             int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
             Log.d("id", Integer.toString(id) + " " + s);
-            ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
-            Drawable image = getResources().getDrawable(id);
-            imageview.setImageDrawable(image);
+            drawImage(id, v);
         }
+        return v;
+    }
+
+    private View drawImage(int id, View v) {
+        ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
+        Drawable image = getResources().getDrawable(id);
+        imageview.setImageDrawable(image);
         return v;
     }
 

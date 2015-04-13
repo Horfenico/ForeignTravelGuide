@@ -25,6 +25,14 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
     private TabHost mTabHost;
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, ActivityCompareResult2.TabInfo>();
     private TabInfo mLastTab = null;
+    private String secndCountryName = "";
+    private int secndCountryPos = 0;
+    private int position = 0;
+    private String selected = "";
+    private String[] namList;
+    private String[] highAdvs;
+    private String[] lowAdvs;
+    private String[] namesZA;
 
     private static void addTab(ActivityCompareResult2 activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         // Attach a Tab view factory to the spec
@@ -49,7 +57,14 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compareresult2);
-        int position = 0;
+
+        Bundle flagFrag = new Bundle();
+
+        position = 0;
+        selected = "";
+        final String[] latitude = getResources().getStringArray(R.array.latitude);
+        final String[] longitude = getResources().getStringArray(R.array.longitude);
+        String second = "";
 
         //Initialise tab host
         this.initialiseTabHost(savedInstanceState);
@@ -60,7 +75,15 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
 
         //Get Country Names
         List<String> nameList = new ArrayList<>();
+        final List<String> highAdv = countryAdvisoryHighLow();
+        final List<String> lowAdv = countryAdvisoryLowHigh();
         nameList = getCountryNames();
+        nameList = getCountryNames();
+        namList = new String[nameList.size()];
+        namList = nameList.toArray(namList);
+        //Get position of item selected
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
         //Get position of item selected
         Intent intent = getIntent();
         // Bundle extras = intent.getExtras();
