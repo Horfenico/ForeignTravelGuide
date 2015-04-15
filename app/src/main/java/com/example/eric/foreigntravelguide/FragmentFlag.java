@@ -50,7 +50,6 @@ public class FragmentFlag extends Fragment {
         nameList = bundle.getStringArray("nameList");
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
-        Log.d("selected", selected);
         if (namesZA != null) {
             if (selected.equals(namesZA[pos])) {
                 flagsZA = new String[namesZA.length];
@@ -76,7 +75,6 @@ public class FragmentFlag extends Fragment {
         } else {
             String s = flags[pos].replace(".png", "").trim();
             int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-            Log.d("id", Integer.toString(id) + " " + s);
             drawImage(id, v);
         }
         return v;

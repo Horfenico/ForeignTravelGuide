@@ -59,6 +59,7 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         setContentView(R.layout.activity_compareresult2);
 
         Bundle flagFrag = new Bundle();
+        Bundle foodFrag = new Bundle();
 
         position = 0;
         selected = "";
@@ -120,6 +121,15 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         flagFrag.putStringArray("highAdv", highAdvs);
         flagFrag.putStringArray("lowAdv", lowAdvs);
         flag.setArguments(flagFrag);
+
+        //Frag 2 Extras
+        foodFrag.putInt("position", position);
+        foodFrag.putString("selected", selected);
+        foodFrag.putStringArray("namesZA", namesZA);
+        foodFrag.putStringArray("highAdv", highAdvs);
+        foodFrag.putStringArray("lowAdv", lowAdvs);
+        foodFrag.putStringArray("nameList", namList);
+        food.setArguments(foodFrag);
 
 
         //Add Fragments to the transaction

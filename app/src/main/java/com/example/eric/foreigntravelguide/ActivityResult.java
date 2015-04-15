@@ -61,6 +61,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         setContentView(R.layout.activity_result);
 
         Bundle flagFrag = new Bundle();
+        Bundle foodFrag = new Bundle();
 
 
         position = 0;
@@ -118,6 +119,14 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         flagFrag.putStringArray("lowAdv", lowAdvs);
         flagFrag.putStringArray("nameList", namList);
 
+        //Frag 2 Extras
+        foodFrag.putInt("position", position);
+        foodFrag.putString("selected", selected);
+        foodFrag.putStringArray("namesZA", namesZA);
+        foodFrag.putStringArray("highAdv", highAdvs);
+        foodFrag.putStringArray("lowAdv", lowAdvs);
+        foodFrag.putStringArray("nameList", namList);
+
 
         //Set action bar title
         ActionBar bar = getSupportActionBar();
@@ -146,6 +155,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         FragmentFlag flag = new FragmentFlag();
         flag.setArguments(flagFrag);
         FragmentFood food = new FragmentFood();
+        food.setArguments(foodFrag);
         FragmentMap map = new FragmentMap();
 
         //Add Fragments to the transaction
