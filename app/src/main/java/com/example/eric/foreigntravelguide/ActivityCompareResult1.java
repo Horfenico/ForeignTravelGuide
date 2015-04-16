@@ -35,7 +35,6 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
     private String[] namesZA;
 
 
-
     private static void addTab(ActivityCompareResult1 activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
         // Attach a Tab view factory to the spec
         tabSpec.setContent(activity.new TabFactory(activity));
@@ -133,7 +132,6 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         if (savedInstanceState != null)
             mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state
         //
-
 
 
         //Frag 1 Extras

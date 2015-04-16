@@ -23,19 +23,29 @@
     <LinearLayout
         android:id="@+id/mapFrag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="false"
         android:layout_below="@+id/foodFrag"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/mapButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|top"
-            android:background="#FF0000"
-            android:text="@string/mapfragText" />
+            android:layout_width="190dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left|top"
+            android:background="#292E37"
+            android:text="@string/mapfragText"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/secndcountry"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right|bottom"
+            android:background="#292E37"
+            android:text="@string/compareMenu"
+            android:textColor="#ffffffff" />
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -73,12 +83,6 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <Button
-                        android:id="@+id/secndcountry"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|bottom"
-                        android:text="@string/compareMenu" />
                 </FrameLayout>
             </LinearLayout>
         </TabHost>

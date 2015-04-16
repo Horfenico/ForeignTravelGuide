@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,17 +55,15 @@ public class FragmentFlag extends Fragment {
                 flagsZA();
                 String s = flagsZA[pos].replace(".png", "").trim();
                 int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-                drawImage(id,v);
+                drawImage(id, v);
             }
-        }
-       else if (selected.equals(highAdv[pos])) {
+        } else if (selected.equals(highAdv[pos])) {
             flagsHigh = new String[highAdv.length];
             sortHighAdv();
             String s = flagsHigh[pos].replace(".png", "").trim();
             int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
             drawImage(id, v);
-        }
-      else if (selected.equals(lowAdv[pos])) {
+        } else if (selected.equals(lowAdv[pos])) {
             flagsLow = new String[lowAdv.length];
             sortLowAdv();
             String s = flagsLow[pos].replace(".png", "").trim();

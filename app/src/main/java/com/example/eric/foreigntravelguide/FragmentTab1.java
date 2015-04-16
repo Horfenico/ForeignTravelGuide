@@ -2,16 +2,12 @@ package com.example.eric.foreigntravelguide;
 
 
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -27,7 +23,7 @@ public class FragmentTab1 extends Fragment {
     private String[] advisoryHigh;
     private String[] advisoryLow;
 
-    public FragmentTab1(){
+    public FragmentTab1() {
 
     }
 
@@ -53,7 +49,7 @@ public class FragmentTab1 extends Fragment {
             if (selected.equals(namesZA[pos])) {
                 advisoryZA = new String[namesZA.length];
                 advisoryZA();
-                displayText(advisoryZA, v,pos);
+                displayText(advisoryZA, v, pos);
             }
         } else if (selected.equals(highAdv[pos])) {
             advisoryHigh = new String[highAdv.length];
@@ -68,6 +64,7 @@ public class FragmentTab1 extends Fragment {
         }
         return v;
     }
+
     private View displayText(String[] s, View v, int pos) {
         TextView textView = (TextView) v.findViewById(R.id.adviseries);
         textView.setText(s[pos]);

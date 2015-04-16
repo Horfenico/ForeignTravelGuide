@@ -122,7 +122,6 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         //
 
 
-
         //Frag 1 Extras
         flagFrag.putInt("position", position);
         flagFrag.putString("selected", selected);

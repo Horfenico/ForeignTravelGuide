@@ -237,7 +237,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
                 if (newTab.fragment == null) {
                     newTab.fragment = Fragment.instantiate(this,
                             newTab.clss.getName(), newTab.args);
-                    ft.add(R.id.realtabcontent,newTab.fragment, newTab.tag);
+                    ft.add(R.id.realtabcontent, newTab.fragment, newTab.tag);
                 } else {
                     ft.attach(newTab.fragment);
                 }

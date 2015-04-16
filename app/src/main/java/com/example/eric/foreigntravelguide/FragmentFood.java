@@ -56,17 +56,15 @@ public class FragmentFood extends Fragment {
                 foodZA();
                 String s = foodZA[pos].replace(".png", "").trim();
                 int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
-                drawImage(id,v);
+                drawImage(id, v);
             }
-        }
-        else if (selected.equals(highAdv[pos])) {
+        } else if (selected.equals(highAdv[pos])) {
             foodHigh = new String[highAdv.length];
             sortHighAdv();
             String s = foodHigh[pos].replace(".png", "").trim();
             int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
             drawImage(id, v);
-        }
-        else if (selected.equals(lowAdv[pos])) {
+        } else if (selected.equals(lowAdv[pos])) {
             foodLow = new String[lowAdv.length];
             sortLowAdv();
             String s = foodLow[pos].replace(".png", "").trim();

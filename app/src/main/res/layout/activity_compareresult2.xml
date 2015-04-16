@@ -34,8 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top"
-            android:background="#FF0000"
-            android:text="@string/mapfragText" />
+            android:background="#292E37"
+            android:text="@string/mapfragText"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
