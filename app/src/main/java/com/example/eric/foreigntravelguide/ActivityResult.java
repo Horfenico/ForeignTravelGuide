@@ -37,6 +37,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
     private String[] lowAdvs;
 
     private static void addTab(ActivityResult activity, TabHost tabHost, TabHost.TabSpec tabSpec, TabInfo tabInfo) {
+
         // Attach a Tab view factory to the spec
         tabSpec.setContent(activity.new TabFactory(activity));
         String tag = tabSpec.getTag();
@@ -198,22 +199,30 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
         TabInfo tabInfo = null;
-        ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Info").setIndicator("Info"), (tabInfo = new TabInfo("Info", FragmentTab1.class, args)));
+        args.putInt("position", position);
+        args.putString("selected", selected);
+        args.putStringArray("namesZA", namesZA);
+        args.putStringArray("highAdv", highAdvs);
+        args.putStringArray("lowAdv", lowAdvs);
+        args.putStringArray("nameList", namList);
+        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Adviseries").setIndicator("Adviseries"), (tabInfo = new TabInfo("Info", FragmentTab1.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tourism").setIndicator("Tourism"), (tabInfo = new TabInfo("Tourism", FragmentTab2.class, args)));
+        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tourism").setIndicator("Tourism"), (tabInfo = new TabInfo("Tourism", FragmentTab2.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Climate").setIndicator("Climate"), (tabInfo = new TabInfo("Climate", FragmentTab3.class, args)));
+        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Climate").setIndicator("Climate"), (tabInfo = new TabInfo("Climate", FragmentTab3.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        ActivityResult.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Security").setIndicator("Security"), (tabInfo = new TabInfo("Security", FragmentTab4.class, args)));
+        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Security").setIndicator("Security"), (tabInfo = new TabInfo("Security", FragmentTab4.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         // Default to first tab
-        this.onTabChanged("Info");
+        this.onTabChanged("Adviseries");
         //
         mTabHost.setOnTabChangedListener(this);
     }
 
     public void onTabChanged(String tag) {
         TabInfo newTab = this.mapTabInfo.get(tag);
+
+
         if (mLastTab != newTab) {
             FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
             if (mLastTab != null) {
@@ -225,6 +234,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
                 if (newTab.fragment == null) {
                     newTab.fragment = Fragment.instantiate(this,
                             newTab.clss.getName(), newTab.args);
+
                     ft.add(R.id.realtabcontent, newTab.fragment, newTab.tag);
                 } else {
                     ft.attach(newTab.fragment);
@@ -275,10 +285,12 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         private Bundle args;
         private Fragment fragment;
 
+
         TabInfo(String tag, Class<?> classy, Bundle args) {
             this.tag = tag;
             this.clss = classy;
             this.args = args;
+
         }
     }
 
