@@ -62,20 +62,13 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
 
         Bundle flagFrag = new Bundle();
         Bundle foodFrag = new Bundle();
+        Bundle tab = new Bundle();
 
         position = 0;
         selected = "";
         final String[] latitude = getResources().getStringArray(R.array.latitude);
         final String[] longitude = getResources().getStringArray(R.array.longitude);
         String second = "";
-
-
-        //Initialise tab host
-        this.initialiseTabHost(savedInstanceState);
-
-        if (savedInstanceState != null)
-            mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state
-        //
 
         //Get Country Names
         List<String> nameList = new ArrayList<>();
@@ -125,6 +118,22 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
         lowAdvs = new String[lowAdv.size()];
         highAdvs = highAdv.toArray(highAdvs);
         lowAdvs = lowAdv.toArray(lowAdvs);
+
+        //set tab args
+        tab.putInt("position", position);
+        tab.putString("selected", selected);
+        tab.putStringArray("namesZA", namesZA);
+        tab.putStringArray("highAdv", highAdvs);
+        tab.putStringArray("lowAdv", lowAdvs);
+        tab.putStringArray("nameList", namList);
+
+        //Initialise tab host
+        this.initialiseTabHost(tab);
+
+        if (savedInstanceState != null)
+            mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state
+        //
+
 
 
         //Frag 1 Extras
