@@ -64,10 +64,8 @@ public class FragmentTab1 extends Fragment {
             sortLowAdv();
             displayText(advisoryLow, v, pos);
         } else {
-            displayText(nameList, v, pos);
+            displayText(advisory, v, pos);
         }
-        Log.d("Made it", "Made it.");
-        Toast.makeText(getActivity().getApplicationContext(),"Here.",Toast.LENGTH_SHORT).show();
         return v;
     }
     private View displayText(String[] s, View v, int pos) {

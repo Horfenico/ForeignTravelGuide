@@ -64,26 +64,11 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         Bundle flagFrag = new Bundle();
         Bundle foodFrag = new Bundle();
         Bundle tab = new Bundle();
-        tab.putInt("position", position);
-        tab.putString("selected", selected);
-        tab.putStringArray("namesZA", namesZA);
-        tab.putStringArray("highAdv", highAdvs);
-        tab.putStringArray("lowAdv", lowAdvs);
-        tab.putStringArray("nameList", namList);
-
 
         position = 0;
         selected = "";
         final String[] latitude = getResources().getStringArray(R.array.latitude);
         final String[] longitude = getResources().getStringArray(R.array.longitude);
-
-
-        //Initialise tab host
-        this.initialiseTabHost(tab);
-
-        if (savedInstanceState != null)
-            mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state
-        //
 
         //Get Country Names
         List<String> nameList = new ArrayList<>();
@@ -120,6 +105,21 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         lowAdvs = new String[lowAdv.size()];
         highAdvs = highAdv.toArray(highAdvs);
         lowAdvs = lowAdv.toArray(lowAdvs);
+
+        //set tab args
+        tab.putInt("position", position);
+        tab.putString("selected", selected);
+        tab.putStringArray("namesZA", namesZA);
+        tab.putStringArray("highAdv", highAdvs);
+        tab.putStringArray("lowAdv", lowAdvs);
+        tab.putStringArray("nameList", namList);
+
+        //Initialise tab host
+        this.initialiseTabHost(tab);
+
+        if (savedInstanceState != null)
+            mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state
+        //
 
         //Frag 1 Extras
         flagFrag.putInt("position", position);
@@ -208,9 +208,9 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
         TabInfo tabInfo = null;
-        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Advisery").setIndicator("Advisery"), (tabInfo = new TabInfo("Info", FragmentTab1.class, args)));
+        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Advisery").setIndicator("Advisery"), (tabInfo = new TabInfo("Advisery", FragmentTab1.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Laws").setIndicator("Laws"), (tabInfo = new TabInfo("Tourism", FragmentTab2.class, args)));
+        addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Laws").setIndicator("Laws"), (tabInfo = new TabInfo("Laws", FragmentTab2.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Climate").setIndicator("Climate"), (tabInfo = new TabInfo("Climate", FragmentTab3.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
@@ -237,7 +237,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
                 if (newTab.fragment == null) {
                     newTab.fragment = Fragment.instantiate(this,
                             newTab.clss.getName(), newTab.args);
-
                     ft.add(R.id.realtabcontent,newTab.fragment, newTab.tag);
                 } else {
                     ft.attach(newTab.fragment);
@@ -293,7 +292,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             this.tag = tag;
             this.clss = classy;
             this.args = args;
-
         }
     }
 
