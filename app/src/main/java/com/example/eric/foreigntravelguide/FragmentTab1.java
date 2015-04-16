@@ -67,6 +67,7 @@ public class FragmentTab1 extends Fragment {
             displayText(nameList, v, pos);
         }
         Log.d("Made it", "Made it.");
+        Toast.makeText(getActivity().getApplicationContext(),"Here.",Toast.LENGTH_SHORT).show();
         return v;
     }
     private View displayText(String[] s, View v, int pos) {
