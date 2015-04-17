@@ -57,16 +57,12 @@
         <activity android:name=".ActivityCompareResult1"
             android:parentActivityName=".ActivityForeignTravelGuide"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.eric.foreigntravelguide.ActivityForeignTravelGuide" />
+
             </activity>
         <activity android:name=".ActivityCompareResult2"
             android:parentActivityName=".ActivityForeignTravelGuide"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.eric.foreigntravelguide.ActivityForeignTravelGuide" />
+
             </activity>
 
     </application>
