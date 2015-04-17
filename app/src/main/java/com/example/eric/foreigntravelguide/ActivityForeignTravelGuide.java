@@ -178,9 +178,6 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         for (int i = 2; i < list.size(); i++)
             countryID[i] = list.get(i)[5];
 
-        //Get URL slugs
-        for (int i = 2; i < list.size(); i++)
-            countryURLslug[i] = list.get(i)[17];
     }
 
     public List<String> countryAdvisoryHighLow() {
