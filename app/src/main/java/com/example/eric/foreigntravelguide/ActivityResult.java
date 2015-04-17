@@ -84,17 +84,17 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         Bundle extras = intent.getExtras();
 
 
-            position = intent.getIntExtra("position", position);
-            try {
-                selected = extras.getString("selected");
-            } catch (Exception e) {
-                selected = "";
-            }
-            try {
-                namesZA = extras.getStringArray("namesZA");
-            } catch (Exception e) {
-                namesZA = null;
-            }
+        position = intent.getIntExtra("position", position);
+        try {
+            selected = extras.getString("selected");
+        } catch (Exception e) {
+            selected = "";
+        }
+        try {
+            namesZA = extras.getStringArray("namesZA");
+        } catch (Exception e) {
+            namesZA = null;
+        }
         if (namesZA != null)
             NamesZAList = new LinkedList<>(Arrays.asList(namesZA));
 
@@ -144,7 +144,7 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         if (selected.equals(nameList.get(position)))
             title.setText(nameList.get(position));
         else if (!NamesZAList.isEmpty() && selected.equals(NamesZAList.get(position))) {
-                title.setText(NamesZAList.get(position));
+            title.setText(NamesZAList.get(position));
         } else if (selected.equals(highAdv.get(position)))
             title.setText(highAdv.get(position));
         else if (selected.equals(lowAdv.get(position)))

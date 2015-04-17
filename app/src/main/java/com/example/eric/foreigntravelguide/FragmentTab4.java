@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -49,11 +48,10 @@ public class FragmentTab4 extends Fragment {
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
         if (namesZA != null && selected.equals(namesZA[pos])) {
-                securityZA = new String[namesZA.length];
-                securityZA();
-                displayText(securityZA, v, pos);
-            }
-         else if (selected.equals(highAdv[pos])) {
+            securityZA = new String[namesZA.length];
+            securityZA();
+            displayText(securityZA, v, pos);
+        } else if (selected.equals(highAdv[pos])) {
             securityHigh = new String[highAdv.length];
             sortHighAdv();
             displayText(securityHigh, v, pos);

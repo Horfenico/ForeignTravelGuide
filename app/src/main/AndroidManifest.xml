@@ -38,7 +38,8 @@
             android:name=".ActivityCompare"
             android:label="Compare" />
 
-        <activity android:name=".ActivityResult"
+        <activity
+            android:name=".ActivityResult"
             android:parentActivityName=".ActivityForeignTravelGuide"
             android:screenOrientation="portrait">
 
@@ -54,16 +55,18 @@
         <activity
             android:name=".ActivityMaps"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".ActivityCompareResult1"
+        <activity
+            android:name=".ActivityCompareResult1"
             android:parentActivityName=".ActivityForeignTravelGuide"
             android:screenOrientation="portrait">
 
-            </activity>
-        <activity android:name=".ActivityCompareResult2"
+        </activity>
+        <activity
+            android:name=".ActivityCompareResult2"
             android:parentActivityName=".ActivityForeignTravelGuide"
             android:screenOrientation="portrait">
 
-            </activity>
+        </activity>
 
     </application>
 

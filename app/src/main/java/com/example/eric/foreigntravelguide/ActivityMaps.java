@@ -98,13 +98,13 @@ public class ActivityMaps extends FragmentActivity {
      */
     private void setUpMap() {
         if (namesZA != null && selected.equals(namesZA[pos])) {
-                latZA = new String[latitude.length];
-                lngZA = new String[longitude.length];
-                sortLatZA();
-                sortLongZA();
-                double lat = Double.parseDouble(latZA[pos]);
-                double lng = Double.parseDouble(lngZA[pos]);
-                setCamera(lat,lng);
+            latZA = new String[latitude.length];
+            lngZA = new String[longitude.length];
+            sortLatZA();
+            sortLongZA();
+            double lat = Double.parseDouble(latZA[pos]);
+            double lng = Double.parseDouble(lngZA[pos]);
+            setCamera(lat, lng);
         } else if (selected.equals(highAdv[pos])) {
             latHighAdv = new String[latitude.length];
             lngHighAdv = new String[longitude.length];
@@ -112,7 +112,7 @@ public class ActivityMaps extends FragmentActivity {
             sortLngHighAdv();
             double lat = Double.parseDouble(latHighAdv[pos]);
             double lng = Double.parseDouble(lngHighAdv[pos]);
-            setCamera(lat,lng);
+            setCamera(lat, lng);
         } else if (selected.equals(lowAdv[pos])) {
             latLowAdv = new String[latitude.length];
             lngLowAdv = new String[longitude.length];
@@ -120,7 +120,7 @@ public class ActivityMaps extends FragmentActivity {
             sortLngLowAdv();
             double lat = Double.parseDouble(latLowAdv[pos]);
             double lng = Double.parseDouble(lngLowAdv[pos]);
-            setCamera(lat,lng);
+            setCamera(lat, lng);
         } else {
             double lat = Double.parseDouble(latitude[pos]);
             double lng = Double.parseDouble(longitude[pos]);
@@ -128,7 +128,7 @@ public class ActivityMaps extends FragmentActivity {
         }
     }
 
-    private void setCamera(double lat, double lng){
+    private void setCamera(double lat, double lng) {
         LatLng latLng = new LatLng(lat, lng);
         CameraPosition cameraPosition =
                 new CameraPosition.Builder()
@@ -142,6 +142,7 @@ public class ActivityMaps extends FragmentActivity {
         mMap.animateCamera(point);
 
     }
+
     private void sortLatZA() {
         int c = 0;
         for (int i = latitude.length - 1; i > -1; i--) {

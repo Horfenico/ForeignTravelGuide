@@ -46,9 +46,9 @@ public class FragmentTab1 extends Fragment {
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
         if (namesZA != null && selected.equals(namesZA[pos])) {
-                advisoryZA = new String[namesZA.length];
-                advisoryZA();
-                displayText(advisoryZA, v, pos);
+            advisoryZA = new String[namesZA.length];
+            advisoryZA();
+            displayText(advisoryZA, v, pos);
 
         } else if (selected.equals(highAdv[pos])) {
             advisoryHigh = new String[highAdv.length];

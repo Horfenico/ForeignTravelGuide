@@ -48,9 +48,9 @@ public class FragmentTab3 extends Fragment {
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
         if (namesZA != null && selected.equals(namesZA[pos])) {
-                climateZA = new String[namesZA.length];
-                climateZA();
-                displayText(climateZA, v, pos);
+            climateZA = new String[namesZA.length];
+            climateZA();
+            displayText(climateZA, v, pos);
 
         } else if (selected.equals(highAdv[pos])) {
             climateHigh = new String[highAdv.length];

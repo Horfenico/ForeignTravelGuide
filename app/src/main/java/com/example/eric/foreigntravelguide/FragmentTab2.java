@@ -47,9 +47,9 @@ public class FragmentTab2 extends Fragment {
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
         if (namesZA != null && selected.equals(namesZA[pos])) {
-                lawsZA = new String[namesZA.length];
-                lawsZA();
-                displayText(lawsZA, v, pos);
+            lawsZA = new String[namesZA.length];
+            lawsZA();
+            displayText(lawsZA, v, pos);
         } else if (selected.equals(highAdv[pos])) {
             lawsHigh = new String[highAdv.length];
             sortHighAdv();
