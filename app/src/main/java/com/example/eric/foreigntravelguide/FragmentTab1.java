@@ -68,6 +68,7 @@ public class FragmentTab1 extends Fragment {
     private View displayText(String[] s, View v, int pos) {
         TextView textView = (TextView) v.findViewById(R.id.adviseries);
         textView.setText(s[pos]);
+
         return v;
     }
 

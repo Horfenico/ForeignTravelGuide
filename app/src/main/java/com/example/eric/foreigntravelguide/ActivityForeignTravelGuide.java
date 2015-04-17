@@ -95,6 +95,7 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case android.R.id.home: {
+
                 return true;
             }
             case R.id.action_help: {

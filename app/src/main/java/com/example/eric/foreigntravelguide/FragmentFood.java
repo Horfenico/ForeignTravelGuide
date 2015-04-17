@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 
 /**
@@ -80,9 +79,8 @@ public class FragmentFood extends Fragment {
     }
 
     private View drawImage(int id, View v) {
-        ImageView imageview = (ImageView) v.findViewById(R.id.flagpic);
         Drawable image = getResources().getDrawable(id);
-        imageview.setImageDrawable(image);
+        v.setBackground(image);
         return v;
     }
 

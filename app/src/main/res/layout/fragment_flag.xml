@@ -5,13 +5,5 @@
     android:background="#009ACD"
     tools:context="com.example.eric.foreigntravelguide.FragmentFlag">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:id="@+id/flagpic"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="left|top"
-
-        android:contentDescription="@string/flag" />
 </FrameLayout>
