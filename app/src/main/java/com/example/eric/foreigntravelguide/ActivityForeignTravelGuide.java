@@ -97,7 +97,9 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case android.R.id.home: {
-
+                Intent homeIntent = new Intent(this, ActivityForeignTravelGuide.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
                 return true;
             }
             case R.id.action_help: {
@@ -119,7 +121,7 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
             case R.id.action_about: {
                 String s = getResources().getString(R.string.about);
                 AlertDialog.Builder builder = new AlertDialog.Builder(ActivityForeignTravelGuide.this);
-                builder.setTitle("Help")
+                builder.setTitle("About")
                         .setMessage(s)
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
