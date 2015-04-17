@@ -7,8 +7,14 @@
     <string name="countryButton">Countries</string>
     <string name="searchButton">search</string>
     <string name="compareButton">Go</string>
-    <string name="action_about">About</string>
     <string name="action_help">Help</string>
+    <string name="action_about">About</string>
+    <string name="help">The Country button provides a list of countries, which then displays the selected result. \n
+        The Search button allows the user to search for their desired destination which then displays the result page. \n
+    The compare button allows the user to choose two destinations and then compare the two instantly with the push of a button.</string>
+    <string name="about">Foreign Travel Guide is an app which is designed to give Canadians important information about all destinations in the world. It provides a view to the map via sattelie.
+        Images of the nations flag as well as a cuisine from the land. There are also four tabs which contain information on the
+    countries advisory state, laws, climate and security. The back button available on the result page  brings the user to the main menu.</string>
     <string name="action_sortAZ">sort A-Z</string>
     <string name="action_sortZA">sort Z-A</string>
     <string name="action_highAdvisry">sort High-Low Advisory Level</string>

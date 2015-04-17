@@ -140,7 +140,9 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
 
         //Set action bar title
         ActionBar bar = getSupportActionBar();
+        bar.setDisplayShowHomeEnabled(true);
         bar.setHomeButtonEnabled(true);
+        bar.setDisplayHomeAsUpEnabled(true);
         TextView title = (TextView) findViewById(R.id.title);
         if (selected == null)
             title.setText(nameList.get(position));

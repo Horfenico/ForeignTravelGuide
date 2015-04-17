@@ -97,7 +97,9 @@ public class ActivityCompareResult1 extends ActivityCompare implements TabHost.O
 
         //Set action bar title
         ActionBar bar = getSupportActionBar();
+        bar.setDisplayShowHomeEnabled(true);
         bar.setHomeButtonEnabled(true);
+        bar.setDisplayHomeAsUpEnabled(true);
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(nameList.get(position));
 

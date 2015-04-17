@@ -1,5 +1,7 @@
 package com.example.eric.foreigntravelguide;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -99,10 +101,34 @@ public class ActivityForeignTravelGuide extends ActionBarActivity {
                 return true;
             }
             case R.id.action_help: {
+                String s = getResources().getString(R.string.help);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ActivityForeignTravelGuide.this);
+                builder.setTitle("Help")
+                        .setMessage(s)
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do things
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+                return true;
             }
-            return true;
 
             case R.id.action_about: {
+                String s = getResources().getString(R.string.about);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ActivityForeignTravelGuide.this);
+                builder.setTitle("Help")
+                        .setMessage(s)
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do things
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
                 return true;
             }
             default:
