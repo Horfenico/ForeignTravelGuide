@@ -47,12 +47,11 @@ public class FragmentTab3 extends Fragment {
         nameList = bundle.getStringArray("nameList");
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
-        if (namesZA != null) {
-            if (selected.equals(namesZA[pos])) {
+        if (namesZA != null && selected.equals(namesZA[pos])) {
                 climateZA = new String[namesZA.length];
                 climateZA();
                 displayText(climateZA, v, pos);
-            }
+
         } else if (selected.equals(highAdv[pos])) {
             climateHigh = new String[highAdv.length];
             sortHighAdv();

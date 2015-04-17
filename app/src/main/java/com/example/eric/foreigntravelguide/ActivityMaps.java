@@ -97,26 +97,14 @@ public class ActivityMaps extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        if (namesZA != null) {
-            if (selected.equals(namesZA[pos])) {
+        if (namesZA != null && selected.equals(namesZA[pos])) {
                 latZA = new String[latitude.length];
                 lngZA = new String[longitude.length];
                 sortLatZA();
                 sortLongZA();
                 double lat = Double.parseDouble(latZA[pos]);
                 double lng = Double.parseDouble(lngZA[pos]);
-                LatLng latLng = new LatLng(lat, lng);
-                CameraPosition cameraPosition =
-                        new CameraPosition.Builder()
-                                .target(latLng)
-                                .bearing(0)
-                                .zoom(5)
-                                .tilt(25)
-                                .build();
-                mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
-                CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                mMap.animateCamera(point);
-            }
+                setCamera(lat,lng);
         } else if (selected.equals(highAdv[pos])) {
             latHighAdv = new String[latitude.length];
             lngHighAdv = new String[longitude.length];
@@ -124,17 +112,7 @@ public class ActivityMaps extends FragmentActivity {
             sortLngHighAdv();
             double lat = Double.parseDouble(latHighAdv[pos]);
             double lng = Double.parseDouble(lngHighAdv[pos]);
-            LatLng latLng = new LatLng(lat, lng);
-            CameraPosition cameraPosition =
-                    new CameraPosition.Builder()
-                            .target(latLng)
-                            .bearing(0)
-                            .zoom(5)
-                            .tilt(25)
-                            .build();
-            mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
-            CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
-            mMap.animateCamera(point);
+            setCamera(lat,lng);
         } else if (selected.equals(lowAdv[pos])) {
             latLowAdv = new String[latitude.length];
             lngLowAdv = new String[longitude.length];
@@ -142,34 +120,28 @@ public class ActivityMaps extends FragmentActivity {
             sortLngLowAdv();
             double lat = Double.parseDouble(latLowAdv[pos]);
             double lng = Double.parseDouble(lngLowAdv[pos]);
-            LatLng latLng = new LatLng(lat, lng);
-            CameraPosition cameraPosition =
-                    new CameraPosition.Builder()
-                            .target(latLng)
-                            .bearing(0)
-                            .zoom(5)
-                            .tilt(25)
-                            .build();
-            mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
-            CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
-            mMap.animateCamera(point);
+            setCamera(lat,lng);
         } else {
             double lat = Double.parseDouble(latitude[pos]);
             double lng = Double.parseDouble(longitude[pos]);
-            LatLng latLng = new LatLng(lat, lng);
-            CameraPosition cameraPosition =
-                    new CameraPosition.Builder()
-                            .target(latLng)
-                            .bearing(0)
-                            .zoom(5)
-                            .tilt(25)
-                            .build();
-            mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
-            CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
-            mMap.animateCamera(point);
+            setCamera(lat, lng);
         }
     }
 
+    private void setCamera(double lat, double lng){
+        LatLng latLng = new LatLng(lat, lng);
+        CameraPosition cameraPosition =
+                new CameraPosition.Builder()
+                        .target(latLng)
+                        .bearing(0)
+                        .zoom(5)
+                        .tilt(25)
+                        .build();
+        mMap.addMarker(new MarkerOptions().position(latLng).title(selected));
+        CameraUpdate point = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        mMap.animateCamera(point);
+
+    }
     private void sortLatZA() {
         int c = 0;
         for (int i = latitude.length - 1; i > -1; i--) {

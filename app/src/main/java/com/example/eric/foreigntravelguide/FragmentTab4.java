@@ -48,13 +48,12 @@ public class FragmentTab4 extends Fragment {
         nameList = bundle.getStringArray("nameList");
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
-        if (namesZA != null) {
-            if (selected.equals(namesZA[pos])) {
+        if (namesZA != null && selected.equals(namesZA[pos])) {
                 securityZA = new String[namesZA.length];
                 securityZA();
                 displayText(securityZA, v, pos);
             }
-        } else if (selected.equals(highAdv[pos])) {
+         else if (selected.equals(highAdv[pos])) {
             securityHigh = new String[highAdv.length];
             sortHighAdv();
             displayText(securityHigh, v, pos);

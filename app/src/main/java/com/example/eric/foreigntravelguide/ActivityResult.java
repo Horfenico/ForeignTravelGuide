@@ -84,7 +84,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         Bundle extras = intent.getExtras();
 
 
-        if (intent != null) {
             position = intent.getIntExtra("position", position);
             try {
                 selected = extras.getString("selected");
@@ -96,8 +95,6 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
             } catch (Exception e) {
                 namesZA = null;
             }
-
-        }
         if (namesZA != null)
             NamesZAList = new LinkedList<>(Arrays.asList(namesZA));
 
@@ -144,12 +141,9 @@ public class ActivityResult extends ActivityForeignTravelGuide implements TabHos
         bar.setHomeButtonEnabled(true);
         bar.setDisplayHomeAsUpEnabled(true);
         TextView title = (TextView) findViewById(R.id.title);
-        if (selected == null)
+        if (selected.equals(nameList.get(position)))
             title.setText(nameList.get(position));
-        else if (selected.equals(nameList.get(position)))
-            title.setText(nameList.get(position));
-        else if (!NamesZAList.isEmpty()) {
-            if (selected.equals(NamesZAList.get(position)))
+        else if (!NamesZAList.isEmpty() && selected.equals(NamesZAList.get(position))) {
                 title.setText(NamesZAList.get(position));
         } else if (selected.equals(highAdv.get(position)))
             title.setText(highAdv.get(position));

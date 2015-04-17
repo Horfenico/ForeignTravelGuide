@@ -181,16 +181,16 @@ public class ActivityCompareResult2 extends ActivityCompare implements TabHost.O
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
         TabInfo tabInfo = null;
-        ActivityCompareResult2.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Info").setIndicator("Info"), (tabInfo = new TabInfo("Info", FragmentTab1.class, args)));
+        ActivityCompareResult2.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Advisery").setIndicator("Advisery"), (tabInfo = new TabInfo("Advisery", FragmentTab1.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
-        ActivityCompareResult2.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tourism").setIndicator("Tourism"), (tabInfo = new TabInfo("Tourism", FragmentTab2.class, args)));
+        ActivityCompareResult2.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Laws").setIndicator("Laws"), (tabInfo = new TabInfo("Laws", FragmentTab2.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         ActivityCompareResult2.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Climate").setIndicator("Climate"), (tabInfo = new TabInfo("Climate", FragmentTab3.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         ActivityCompareResult2.addTab(this, this.mTabHost, this.mTabHost.newTabSpec("Security").setIndicator("Security"), (tabInfo = new TabInfo("Security", FragmentTab4.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         // Default to first tab
-        this.onTabChanged("Info");
+        this.onTabChanged("Advisery");
         //
         mTabHost.setOnTabChangedListener(this);
     }

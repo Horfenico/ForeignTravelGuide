@@ -38,6 +38,7 @@ public class ActivityCountry extends ActivityForeignTravelGuide {
         title.setText("Destinations");
 
         nameList = getCountryNames();
+        namesZA = new String[nameList.size()];
 
         lv = (ListView) findViewById(R.id.list);
         aa = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, nameList);
@@ -83,7 +84,6 @@ public class ActivityCountry extends ActivityForeignTravelGuide {
                 nameList = getCountryNames();
                 String[] names = new String[nameList.size()];
                 names = nameList.toArray(names);
-                namesZA = new String[nameList.size()];
                 List<String> namesZAList = new LinkedList<>();
                 int c = 0;
 

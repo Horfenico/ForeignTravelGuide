@@ -48,14 +48,13 @@ public class FragmentFlag extends Fragment {
         nameList = bundle.getStringArray("nameList");
         highAdv = bundle.getStringArray("highAdv");
         lowAdv = bundle.getStringArray("lowAdv");
-        if (namesZA != null) {
-            if (selected.equals(namesZA[pos])) {
+        if (namesZA != null && selected.equals(namesZA[pos])) {
                 flagsZA = new String[namesZA.length];
                 flagsZA();
                 String s = flagsZA[pos].replace(".png", "").trim();
                 int id = getResources().getIdentifier(s, null, getActivity().getPackageName());
                 drawImage(id, v);
-            }
+
         } else if (selected.equals(highAdv[pos])) {
             flagsHigh = new String[highAdv.length];
             sortHighAdv();
